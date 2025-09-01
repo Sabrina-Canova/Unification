@@ -9,8 +9,8 @@ from functions.test import test_unification
 #L2 = "p(f(a), f(g(b)))"
 #L1 = "t(u, v, v)"
 #L2 = "t(f(a), f(b), x)"
-L1 = "k(f(a,c),c)"  
-L2 = "k(x,y)"
+#L1 = "k(f(a,c),c)"  
+#L2 = "k(x,y)"
 #L1 = "q(f(x), x)"
 #L2 = "q(y, g(y))"
 #L1 = "m(x, x, j)"
@@ -25,6 +25,8 @@ L2 = "k(x,y)"
 #L2 = "m(y, g(y))"
 #L1 = "s(f(x), x, z)"
 #L2 = "s(y, y, g(a))"
+L1 = "p(f(y),w,g(z)) "
+L2 = "p(u,u,v)"
 
 # Separando os argumentos dos predicados
 literal1 = remove(L1)
@@ -41,10 +43,7 @@ else:
 
     if result is None:
         print("Os termos nao sao unificaveis!")
-        ###Fzr mostrar as subs q n deram certo. Talvez criar um arquivo só para printar os erros###
-        #for i in range(len(literal1)):
-         #   if literal1[i] != literal2[i]:
-          #      print(f"Termos que causaram a falha: {literal1[i]} -> {literal2[i]}")
+        
     else: 
         print("\nSubstituicoes encontradas:")
         for var, val in result.items():

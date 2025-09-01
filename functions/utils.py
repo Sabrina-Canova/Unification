@@ -26,7 +26,7 @@ def occurs_check(var, term, subst):
 
 def apply_substitutions(literal, subst): # Aplica a substituição de variáveis em um literal
     for i in range(len(literal)):
-        #for _ in range(10):  # Itera sobre cada caractere do literal
+       
         novo_literal = literal
         for var, val in subst.items():
             novo_literal = re.sub(rf"\b{var}\b", val, novo_literal) # Substitui var por val apenas se var for uma palavra completa
