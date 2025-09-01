@@ -1,0 +1,8 @@
+p(x, f(y));p(f(a), f(g(b)))
+t(u, v, v);t(f(a), f(b), x)
+k(f(a,c),c);k(x,y)
+q(f(x), x);q(y, g(y))
+m(x, x, j);m(g(y), y)
+p(f(x));p(x)
+p(f(g(x)), w, k);p(w, z, g(w))
+p(f(x), y, x);p(z, g(z), w)         

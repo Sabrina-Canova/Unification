@@ -1,0 +1,8 @@
+Exercício 1: Substituições encontradas: x -> f(a), y -> g(b)
+Exercício 2: Substituições encontradas: u -> f(a), v -> f(b), x -> f(b)
+Exercício 3: Substituições encontradas: x -> f(a,c), c -> y
+Exercício 4: Os termos não são unificáveis! NONE
+Exercício 5: Os termos não são unificáveis! Possuem tamanhos diferentes
+Exercício 6: Os termos não são unificáveis! NONE
+Exercício 7: Substituições encontradas: w -> f(g(x)), z -> f(g(x)), k -> g(f(g(x)))
+Exercício 8: Substituições encontradas: z -> f(x), y -> g(f(x)), x -> w
