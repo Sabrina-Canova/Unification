@@ -1,0 +1,190 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f7fa;
+}
+
+.navbar {
+    background: #3b4a6b;
+    padding: 20px 40px;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+/* Container geral */
+.container {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+/* Card */
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 900px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.card h1 {
+    color: #2f3d5a;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* Formulário e Inputs */
+.input-group {
+    color: #3b4a6b;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid #3b4a6b;
+    outline: none;
+    transition: 0.2s;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+}
+
+/* Botões */
+button {
+    width: 50%;
+    padding: 12px;
+    background: #3b4a6b;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 17px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover,
+.btn-voltar:hover {
+    background: #2f3d5a;
+}
+
+.btn-voltar {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 16px;
+    background: #3b4a6b;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+/* Tabela de Unificação */
+.table-container {
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+.tabela-unificacao {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.tabela-unificacao thead {
+    background: #3b4a6b;
+    color: white;
+}
+
+.tabela-unificacao th {
+    padding: 12px;
+    text-align: center;
+}
+
+.tabela-unificacao td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.tabela-unificacao tbody tr:nth-child(even) {
+    background: #f8f9fc;
+}
+
+.tabela-unificacao tbody tr:hover {
+    background: #eef2ff;
+}
+
+/* Tags de substituição */
+.tag {
+    display: inline-block;
+    background: #e0e7ff;
+    color: #3730a3;
+    padding: 4px 8px;
+    margin: 2px;
+    border-radius: 6px;
+    font-size: 12px;
+}
+
+/* Literais e Colunas */
+.literal {
+    font-family: monospace;
+}
+
+.col-k {
+    font-weight: bold;
+}
+
+.dk {
+    color: #555;
+}
+
+/* Destaques da Tabela */
+.tabela-unificacao td.literal-ok {
+    background: #b7d5ac;
+    color: #166534;
+    font-weight: bold;
+}
+
+.tabela-unificacao tbody tr.linha-falha,
+.tabela-unificacao tbody tr.linha-falha:hover {
+    background: #fff5f5;
+}
+
+.tabela-unificacao td.dk-falha {
+    background: #fecaca;
+    color: #b91c1c;
+    font-weight: bold;
+}
+
+/* Mensagens de Erro */
+.erro-box {
+    color: #b91c1c;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
