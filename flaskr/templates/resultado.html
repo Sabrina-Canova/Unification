@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}Resultado{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <div class="card">
+
+        <h1>Resultado da Unificação</h1>
+
+        {% if erro and not tabela %}
+        <div class="erro-box">
+            <strong>{{ erro }}</strong>
+        </div>
+        {% else %}
+
+        <div class="table-container">
+            <table class="tabela-unificacao">
+                <thead>
+                    <tr>
+                        <th>k</th>
+                        <th>θ<sub>k</sub></th>
+                        <th>L<sub>1</sub>θ<sub>k</sub></th>
+                        <th>L<sub>2</sub>θ<sub>k</sub></th>
+                        <th>D<sub>k</sub></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in tabela %}
+                    <tr class="{{ 'linha-falha' if row.falha }}">
+                        <td class="col-k">{{ loop.index0 }}</td>
+
+                        <td class="theta">
+                            {% for key, value in row.theta.items() %}
+                            <span class="tag">{{ key }} ← {{ value }}</span>
+                            {% endfor %}
+                        </td>
+
+                        {% set unified = (not erro) and row.l1 == row.l2 %}
+                        <td class="literal{{ ' literal-ok' if unified }}">{{ function1 }}{{ row.l1 }}</td>
+                        <td class="literal{{ ' literal-ok' if unified }}">{{ function2 }}{{ row.l2 }}</td>
+
+                        <td class="dk{{ ' dk-falha' if row.falha }}">{{ row.dk }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {% if erro %}
+        <div class="erro-box">
+            <strong>Unificação não concluída:</strong> {{ erro }}
+        </div>
+        {% endif %}
+
+        {% endif %}
+
+        <a href="{{ url_for('routes.exercicios') }}" class="btn-voltar">
+            Voltar
+        </a>
+
+    </div>
+
+</div>
+{% endblock %}
