@@ -1,5 +1,6 @@
 from functions.unify import unify
 from functions.parsing import remove
+from functions.erros import *
 
 def test_unification(entrada, saida):
     resultados = []
@@ -17,16 +18,27 @@ def test_unification(entrada, saida):
             continue
         
         L1, L2 = linha.split(';', 1)
-        literal1 = remove(L1)
-        literal2 = remove(L2)
-        print(f"literal1: {literal1}")
-        print(f"literal2: {literal2}")
-
-        if literal1 is None or literal2 is None or len(literal1) != len(literal2):
-            resultados.append(f"Exercício {i}: Os termos não são unificáveis! Possuem tamanhos diferentes")
+        try:
+            literal1 = remove(L1.strip())
+        except ErroDeFormatacao as e:
+            resultados.append(f"Exercício {i}: {e} - Problema no Literal 1")
             continue
 
-        resultado = unify(literal1, literal2)
+        try:
+            literal2 = remove(L2.strip())
+        except ErroDeFormatacao as e:
+            resultados.append(f"Exercício {i}: {e} - Problema no Literal 2")
+            continue
+    
+        #print(f"literal1: {literal1}")
+        #print(f"literal2: {literal2}")
+
+        try:
+            resultado = unify(literal1, literal2)
+        except TamanhoDiferente as e:
+            resultados.append(f"Exercício {i}: {e}")
+            continue
+
         print("-------------------------")
         print(f"lit1: {literal1}")
         print(f"lit2: {literal2}")

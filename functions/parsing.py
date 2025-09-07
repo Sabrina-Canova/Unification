@@ -1,4 +1,5 @@
 import re
+from functions.erros import *
 
 def remove(literal):
     """Remove variáveis de um literal, retornando apenas a parte fixa."""
@@ -24,6 +25,8 @@ def remove(literal):
             else:
                 temp += caractere
         termos.append(temp.strip())  # Adiciona o último argumento
+        if lendoFunc != 0:
+            raise ErroDeFormatacao("Formatação errada! Termos não unificáveis. Parênteses não fechados.")
         return termos
-    return None
+    raise ErroDeFormatacao("Formatação errada! Termos não unificáveis.")
 

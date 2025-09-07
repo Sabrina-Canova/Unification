@@ -2,6 +2,7 @@ import re
 from .utils import occurs_check, apply_substitutions
 from .parsing import remove
 from tabulate import tabulate  # Biblioteca para formatar a tabela
+from .erros import *
 
 
 def unify(literal1, literal2):
@@ -47,8 +48,7 @@ def unify(literal1, literal2):
 
                 # nomes das funções diferentes → falha
                 if func1 != func2 or len(args1) != len(args2):
-                    print(f"Funcoes diferentes ou numero de argumentos diferente: {func1}/{len(args1)} e {func2}/{len(args2)}")
-                    return None
+                    raise TamanhoDiferente(f"Funcoes diferentes ou numero de argumentos diferente: {func1}/{len(args1)} e {func2}/{len(args2)}")
 
                 # recursivamente unificar cada par de argumentos
                 for a1, a2 in zip(args1, args2):
@@ -69,5 +69,5 @@ def unify(literal1, literal2):
     if tabela:
         print(tabulate(tabela, headers=["Theta_k", "L1Theta_k", "L2Theta_k", "Dk"], tablefmt="grid"))
     print("Termos unificados:")
-    print(f"p({tabela[-1][1].replace(' ', ',')})")
+   # print(f"p({tabela[-1][1].replace(' ', ',')})")
     return subst  # Retorna as substituições finais

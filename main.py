@@ -2,7 +2,8 @@ from functions.unify import unify
 from functions.parsing import remove
 from functions.test import test_unification
 
-#test_unification('input.txt', 'output.txt')
+test_unification('in.txt', 'output.txt')
+
 
 # Termos a serem unificados
 #L1 = "p(x, f(y))"
@@ -25,9 +26,9 @@ from functions.test import test_unification
 #L2 = "m(y, g(y))"
 #L1 = "s(f(x), x, z)"
 #L2 = "s(y, y, g(a))"
-L1 = "p(f(y),w,g(z)) "
-L2 = "p(u,u,v)"
-
+#L1 = "p(f(y),w,g(z)) "
+#L2 = "p(u,u,v)"
+"""
 # Separando os argumentos dos predicados
 literal1 = remove(L1)
 literal2 = remove(L2)
@@ -51,3 +52,4 @@ else:
 
 
 
+"""
