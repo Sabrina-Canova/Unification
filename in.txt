@@ -1,1 +1,3 @@
 t(x, f(g(h(i(x))))); t(f(a), f(g(h(i(a)))), a)
+s(f(x,x)); s(f(a,b))
+p(f(x)); p(x)

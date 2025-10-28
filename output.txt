@@ -1,1 +1,3 @@
-Exercício 1: Os termos não são unificáveis! Possuem tamanhos diferentes
+Exercício 1: Substituições encontradas: x -> a
+Exercício 2: Substituições encontradas: x -> b
+Exercicio 3: Os termos não são unificáveis devido a um loop de substituição.

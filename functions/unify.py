@@ -1,8 +1,8 @@
 import re
-from .utils import occurs_check, apply_substitutions
-from .parsing import remove
+from functions.utils import occurs_check, apply_substitutions
+from functions.parsing import remove
 from tabulate import tabulate  # Biblioteca para formatar a tabela
-from .erros import *
+from functions.erros import *
 
 
 def unify(literal1, literal2):
@@ -54,7 +54,7 @@ def unify(literal1, literal2):
                 for a1, a2 in zip(args1, args2):
                     resultado = unify([a1], [a2])
                     if resultado is None:
-                        return None
+                        return None 
                     subst.update(resultado)
 
             else:

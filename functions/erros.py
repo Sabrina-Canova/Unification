@@ -3,3 +3,7 @@ class ErroDeFormatacao(Exception):
 
 class TamanhoDiferente(Exception):
     pass
+
+class ErroDeLoop(Exception):
+    pass
+

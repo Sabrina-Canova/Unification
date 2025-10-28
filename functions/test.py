@@ -43,8 +43,12 @@ def test_unification(entrada, saida):
         print(f"lit1: {literal1}")
         print(f"lit2: {literal2}")
         print("-------------------------")
-        if resultado is None:
-            resultados.append(f"Exercício {i}: Os termos não são unificáveis! NONE")
+        try:
+            if resultado is None:
+                raise ErroDeLoop(f"Exercicio {i}: Os termos não são unificáveis devido a um loop de substituição.")
+        except ErroDeLoop as e:
+            resultados.append(str(e))
+            continue
         else:
             subst = ", ".join([f"{var} -> {val}" for var, val in resultado.items()])
             resultados.append(f"Exercício {i}: Substituições encontradas: {subst}")
