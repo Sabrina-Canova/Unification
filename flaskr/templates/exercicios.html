@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Exercícios{% endblock %}
+
+{% block content %}
+<h1>Exercício de Unificação</h1>
+
+<form action="{{ url_for('routes.resultado') }}" method="POST" id="form-unificacao">
+    <label>Predicado 1:</label>
+    <input type="text" name="pred1" placeholder="Ex: p(f(x), y, x)" required>
+
+    <label>Predicado 2:</label>
+    <input type="text" name="pred2" placeholder="Ex: p(z, g(z), w)" required>
+
+    <button type="submit">Unificar</button>
+</form>
+{% endblock %}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Unificação{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <div id="logo"> 
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo">
+        </div>
+        <ul id="menu">
+            <li><a href="/">Conteúdo</a></li>
+            <li><a href="/exercicios">Exercícios</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+</body>
+</html>

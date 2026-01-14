@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Resultado{% endblock %}
+
+{% block content %}
+<h1>Resultado da Unificação</h1>
+
+{% if erro %}
+    <div class="erro">
+        <p><strong>Erro:</strong> {{ erro }}</p>
+    </div>
+{% else %}
+    <table class="tabela-unificacao">
+        <thead>
+            <tr>
+                <th>k</th>         
+                <th>θk</th>
+                <th>L1θk</th>
+                <th>L2θk</th>
+                <th>Dk</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for linha in tabela %}
+            <tr>
+                <td>{{ loop.index0 }}</td>
+                <td>{{ linha.theta }}</td>
+                <td>{{ linha.l1 }}</td>
+                <td>{{ linha.l2 }}</td>
+                <td>{{ linha.dk }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+<a href="{{ url_for('routes.exercicios') }}" class="btn-voltar">Voltar</a>
+
+{% endblock %}
