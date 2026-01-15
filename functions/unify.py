@@ -1,6 +1,5 @@
 import re
 from functions.utils import occurs_check, apply_substitutions
-from functions.parsing import remove
 from tabulate import tabulate  # Biblioteca para formatar a tabela
 from functions.erros import *
 
@@ -11,10 +10,11 @@ def unify(literal1, literal2):
     subst = {}  # Dicionário de substituições
     tabela = []  # Matriz para armazenar as etapas da unificação
 
-    for i in range(len(literal1)):
-        termo1 = literal1[i]
-        termo2 = literal2[i]
-
+    if len(literal1) != len(literal2):
+        raise TamanhoDiferente("Número de argumentos diferentes")
+    
+    for termo1, termo2 in zip(literal1, literal2):
+        
         # Aplica substituições anteriores
         while termo1 in subst:
             termo1 = subst[termo1]
@@ -42,32 +42,48 @@ def unify(literal1, literal2):
             match1 = re.match(r'(\w+)\((.*)\)', termo1)
             match2 = re.match(r'(\w+)\((.*)\)', termo2)
 
-            if match1 and match2:
-                func1, args1 = match1.group(1), [a.strip() for a in match1.group(2).split(',')]
-                func2, args2 = match2.group(1), [a.strip() for a in match2.group(2).split(',')]
+            if not match1 or not match2:
+                return None
 
-                # nomes das funções diferentes → falha
-                if func1 != func2 or len(args1) != len(args2):
-                    raise TamanhoDiferente(f"Funcoes diferentes ou numero de argumentos diferente: {func1}/{len(args1)} e {func2}/{len(args2)}")
+            func1, args1 = match1.group(1), [a.strip() for a in match1.group(2).split(',')]
+            func2, args2 = match2.group(1), [a.strip() for a in match2.group(2).split(',')]
+
+                # nomes das funções diferentes -> falha
+            if func1 != func2 or len(args1) != len(args2):
+                raise TamanhoDiferente("Funcoes diferentes ou numero de argumentos diferente")
 
                 # recursivamente unificar cada par de argumentos
-                for a1, a2 in zip(args1, args2):
-                    resultado = unify([a1], [a2])
-                    if resultado is None:
+            for a1, a2 in zip(args1, args2):
+                resultado = unify([a1], [a2])
+                if resultado is None:
                         return None 
-                    subst.update(resultado)
+                subst.update(resultado["substituicoes"])
 
-            else:
-                return None  # um é função, outro não → falha
+            #algumas alterações para o flask
+            tabela.append({
+                "theta": dict(subst),
+                "l1": apply_substitutions(" ".join(literal1), subst),
+                "l2": apply_substitutions(" ".join(literal2), subst),
+                "dk": f"{{{termo1},{termo2}}}"
+            })
+
+    return{
+        "sucesso" : True,
+        "substituicoes": subst,
+        "tabela": tabela
+    }
+            #else:
+                #return None  # um é função, outro não -> falha
 
         # Aplicando as substituições nos literais antes de exibir
-        L1_aplicado = apply_substitutions(" ".join(literal1), subst)
-        L2_aplicado = apply_substitutions(" ".join(literal2), subst)
-        tabela.append([str(subst), L1_aplicado, L2_aplicado, f"{{{termo1}, {termo2}}}"])
+        #L1_aplicado = apply_substitutions(" ".join(literal1), subst)
+        #L2_aplicado = apply_substitutions(" ".join(literal2), subst)
+        #tabela.append([str(subst), L1_aplicado, L2_aplicado, f"{{{termo1}, {termo2}}}"])
 
     # Exibir a tabela formatada
-    if tabela:
-        print(tabulate(tabela, headers=["Theta_k", "L1Theta_k", "L2Theta_k", "Dk"], tablefmt="grid"))
-    print("Termos unificados:")
+    #if tabela:
+    #    print(tabulate(tabela, headers=["Theta_k", "L1Theta_k", "L2Theta_k", "Dk"], tablefmt="grid"))
+    #print("Termos unificados:")
    # print(f"p({tabela[-1][1].replace(' ', ',')})")
-    return subst  # Retorna as substituições finais
+    #return subst  # Retorna as substituições finais
+

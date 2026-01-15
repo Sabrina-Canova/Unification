@@ -1,5 +1,7 @@
 from flask import Blueprint, render_template, request
 from functions.unify import unify
+from functions.parsing import remove
+from functions.erros import *
 
 bp = Blueprint("routes", __name__)
 
@@ -18,17 +20,22 @@ def resultado():
     pred2 = request.form.get("pred2")
 
     try:
-        # sua função unify PRECISA retornar tabela e substituições depois
-        resultado = unify(pred1, pred2)
+        literal1 = remove(pred1)
+        literal2 = remove(pred2)
+
+        resultado = unify(literal1, literal2)
+
+        if resultado is None:
+            raise ErroDeLoop("Os termos não são unificavéis, erro de loop de substituições")
 
         return render_template(
             "resultado.html",
-            tabela=resultado,
-            erro=None
+            tabela=resultado["tabela"],
+            substituicoes=resultado["substituicoes"],
         )
     except Exception as e:
         return render_template(
             "resultado.html",
-            tabela=None,
+            tabela=[],
             erro=str(e)
         )
