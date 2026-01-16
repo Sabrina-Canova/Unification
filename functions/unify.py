@@ -48,7 +48,7 @@ def unify(literal1, literal2):
             func1, args1 = match1.group(1), [a.strip() for a in match1.group(2).split(',')]
             func2, args2 = match2.group(1), [a.strip() for a in match2.group(2).split(',')]
 
-                # nomes das funções diferentes -> falha
+                # nomes das funções diferentes da falha
             if func1 != func2 or len(args1) != len(args2):
                 raise TamanhoDiferente("Funcoes diferentes ou numero de argumentos diferente")
 
@@ -60,12 +60,12 @@ def unify(literal1, literal2):
                 subst.update(resultado["substituicoes"])
 
             #algumas alterações para o flask
-            tabela.append({
-                "theta": dict(subst),
-                "l1": apply_substitutions(" ".join(literal1), subst),
-                "l2": apply_substitutions(" ".join(literal2), subst),
-                "dk": f"{{{termo1},{termo2}}}"
-            })
+        tabela.append({
+            "theta": dict(subst),
+            "l1": apply_substitutions(" ".join(literal1), subst),
+            "l2": apply_substitutions(" ".join(literal2), subst),
+            "dk": f"{{{termo1},{termo2}}}"
+        })
 
     return{
         "sucesso" : True,
