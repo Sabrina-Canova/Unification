@@ -20,8 +20,8 @@ def resultado():
     pred2 = request.form.get("pred2")
 
     try:
-        literal1 = remove(pred1)
-        literal2 = remove(pred2)
+        function1, literal1 = remove(pred1)
+        function2, literal2 = remove(pred2)
 
         resultado = unify(literal1, literal2)
 
@@ -31,7 +31,8 @@ def resultado():
         return render_template(
             "resultado.html",
             tabela=resultado["tabela"],
-            substituicoes=resultado["substituicoes"],
+            function1=function1,
+            function2=function2
         )
     except Exception as e:
         return render_template(

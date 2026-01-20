@@ -24,7 +24,7 @@ def occurs_check(var, term, subst):
 
     
 
-def apply_substitutions(literal, subst): # Aplica a substituição de variáveis em um literal
+def apply_substitutions(literal: str, subst: dict): # Aplica a substituição de variáveis em um literal
     for i in range(len(literal)):
        
         novo_literal = literal

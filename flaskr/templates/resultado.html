@@ -24,9 +24,9 @@
             {% for linha in tabela %}
             <tr>
                 <td>{{ loop.index0 }}</td>
-                <td>{{ linha.theta }}</td>
-                <td>{{ linha.l1 }}</td>
-                <td>{{ linha.l2 }}</td>
+                <td>{% for key, value in linha.theta.items() %}|{{ key }}←{{ value }}| {% endfor %}</td>
+                <td>{{ function1 }}{{ linha.l1 }}</td>
+                <td>{{ function2 }}{{ linha.l2 }}</td>
                 <td>{{ linha.dk }}</td>
             </tr>
             {% endfor %}
